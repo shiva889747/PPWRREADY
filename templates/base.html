@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ title or 'PPWR Readiness' }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<aside>
+  <div class="brand"><span class="brand-mark">P</span><div>PPWR<span>READY</span><small>Data Readiness Hub</small></div></div>
+  <nav>
+    <a class="{{'active' if request.endpoint=='dashboard'}}" href="{{url_for('dashboard')}}"><span>⌂</span> Dashboard</a>
+    <a class="{{'active' if request.endpoint in ['packaging','record','edit_record']}}" href="{{url_for('packaging')}}"><span>▦</span> Packaging Register</a>
+    <a class="{{'active' if request.endpoint=='add_record'}}" href="{{url_for('add_record')}}"><span>＋</span> Add Record</a>
+    <a class="{{'active' if request.endpoint in ['import_csv','import_confirm']}}" href="{{url_for('import_csv')}}"><span>⇧</span> Import CSV</a>
+    <div class="nav-label">ASSESSMENT</div>
+    <a class="{{'active' if request.endpoint=='gaps'}}" href="{{url_for('gaps')}}"><span>△</span> Gap Analysis</a>
+    <a class="{{'active' if request.endpoint=='readiness'}}" href="{{url_for('readiness')}}"><span>◎</span> Digital Readiness</a>
+    <a class="{{'active' if request.endpoint=='simulator'}}" href="{{url_for('simulator')}}"><span>↗</span> What-if Simulator</a>
+    <a class="{{'active' if request.endpoint=='suppliers'}}" href="{{url_for('suppliers')}}"><span>◇</span> Supplier Analytics</a>
+    <div class="nav-label">GOVERNANCE</div>
+    <a class="{{'active' if request.endpoint in ['actions','action_status']}}" href="{{url_for('actions')}}"><span>✓</span> Remediation Actions</a>
+    <a class="{{'active' if request.endpoint=='snapshots'}}" href="{{url_for('snapshots')}}"><span>◷</span> Assessment History</a>
+    <a class="{{'active' if request.endpoint=='audit'}}" href="{{url_for('audit')}}"><span>≡</span> Audit Trail</a>
+    <a class="{{'active' if request.endpoint=='dictionary'}}" href="{{url_for('dictionary')}}"><span>?</span> Data Dictionary</a>
+    <a class="{{'active' if request.endpoint=='report'}}" href="{{url_for('report')}}"><span>▤</span> Compliance Report</a>
+    <div class="nav-label">DATA</div>
+    <a href="{{url_for('export_csv')}}"><span>⇩</span> Export CSV</a>
+    <a href="{{url_for('export_json')}}"><span>{ }</span> Export JSON</a>
+  </nav>
+  <div class="sidebar-status"><span class="live-dot"></span><div><b>Assessment workspace</b><small>Local database active</small></div></div>
+</aside>
+<main>
+  <header><div><div class="eyebrow">PACKAGING DATA GOVERNANCE</div><h1>{{ heading or 'PPWR Compliance Readiness' }}</h1><p class="muted">Current-State Packaging Data & Digital Readiness Assessment</p></div><a class="header-action" href="{{url_for('add_record')}}">＋ New packaging record</a></header>
+  {% with messages=get_flashed_messages() %}{% if messages %}<div class="flash">✓ {{messages[0]}}</div>{% endif %}{% endwith %}
+  {% block content %}{% endblock %}
+  <footer><span>PPWRREADY · Packaging Data Readiness Assessment</span><span>Readiness scoring is an internal assessment methodology and not a legal certification.</span></footer>
+</main>
+</body></html>

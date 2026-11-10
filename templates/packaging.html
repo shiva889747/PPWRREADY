@@ -1,0 +1,11 @@
+{% extends 'base.html' %}{% block content %}
+<div class="card">
+  <div class="card-head register-head"><div><span class="section-kicker">MASTER DATA</span><h2>Packaging Register</h2><p class="muted">Search and review all packaging components in scope.</p></div><a class="btn" href="{{url_for('add_record')}}">＋ Add record</a></div>
+  <div class="toolbar"><div class="searchbox">⌕ <input id="tableSearch" placeholder="Search SKU, product, material..."></div><select id="statusFilter"><option value="">All readiness statuses</option><option>High</option><option>Medium</option><option>Low</option></select><span id="resultCount" class="result-count">{{rows|length}} records</span></div>
+  <div class="tablewrap"><table id="registerTable"><thead><tr><th>SKU</th><th>Product</th><th>Packaging</th><th>Material</th><th>Weight</th><th>Readiness</th><th>Status</th><th></th></tr></thead><tbody>{% for r,score,status in rows %}<tr data-status="{{status}}"><td><b>{{r.sku}}</b></td><td>{{r.product_name}}</td><td>{{r.packaging_type or '-'}}</td><td><span class="material-chip">{{r.material or '-'}}</span></td><td>{{r.weight_g or '-'}}{% if r.weight_g %} g{% endif %}</td><td><div class="score-cell"><div class="tiny-progress"><i style="width:{{score}}%"></i></div><b>{{score}}%</b></div></td><td><span class="status {{status|lower}}">{{status}}</span></td><td><a class="view-link" href="{{url_for('record',record_id=r.id)}}">View →</a></td></tr>{% endfor %}</tbody></table></div>
+</div>
+<script>
+const q=document.getElementById('tableSearch'), f=document.getElementById('statusFilter'), rows=[...document.querySelectorAll('#registerTable tbody tr')], count=document.getElementById('resultCount');
+function filterRows(){let term=q.value.toLowerCase(), status=f.value;let shown=0;rows.forEach(r=>{let ok=r.innerText.toLowerCase().includes(term)&&(!status||r.dataset.status===status);r.style.display=ok?'':'none';if(ok)shown++;});count.textContent=shown+' record'+(shown===1?'':'s');}q.addEventListener('input',filterRows);f.addEventListener('change',filterRows);
+</script>
+{% endblock %}

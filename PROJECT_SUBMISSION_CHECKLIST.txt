@@ -1,0 +1,9 @@
+PPWR COLLEGE PROJECT - SUBMISSION CHECKLIST
+
+1. Fill your name, roll number, department, college and guide on the report cover.
+2. Install the project using README.md.
+3. Run the website and capture 5-7 screenshots for your college record if required.
+4. Recommended screenshots: Dashboard, Packaging Register, Record Assessment, Gap Analysis, Digital Readiness, Add Record, Compliance Report.
+5. Practice the viva questions in Chapter 15.
+6. Keep the wording "academic readiness score" - do not claim that the prototype legally certifies PPWR compliance.
+7. Submit source-code ZIP + report PDF/DOCX according to your college format.

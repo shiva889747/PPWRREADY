@@ -1,0 +1,18 @@
+{% extends 'base.html' %}{% block content %}
+<div class="form-shell">
+  <div class="card form-intro"><span class="section-kicker">NEW RECORD</span><h2>Add packaging data</h2><p class="muted">Capture the packaging attributes used by the readiness assessment. Required product identifiers are marked with an asterisk.</p><div class="form-tip"><b>Tip</b><span>Complete evidence, labelling, source and verification fields to improve the readiness score.</span></div></div>
+  <div class="card"><form method="post" class="formgrid">
+    <h3 class="wide form-section">1. Product & packaging</h3>
+    <label>SKU *<input required name="sku" placeholder="e.g. SKU-1020"></label><label>Product name *<input required name="product_name" placeholder="e.g. Mineral Water 1L"></label>
+    <label>Packaging level<select name="packaging_level"><option>Primary</option><option>Secondary</option><option>Transport</option></select></label><label>Packaging type<input name="packaging_type" placeholder="Bottle, carton, pouch..."></label>
+    <h3 class="wide form-section">2. Material attributes</h3>
+    <label>Material<input name="material" placeholder="PET, glass, paperboard..."></label><label>Weight (g)<input type="number" step="0.01" name="weight_g" placeholder="0.00"></label>
+    <label>Recycled content (%)<input type="number" step="0.1" min="0" max="100" name="recycled_content_pct" placeholder="0-100"></label><label>Recyclable?<select name="recyclable"><option>Yes</option><option>No</option><option>Unknown</option></select></label>
+    <h3 class="wide form-section">3. Evidence & governance</h3>
+    <label>Supplier<input name="supplier" placeholder="Supplier name"></label><label>Supplier evidence?<select name="supplier_evidence"><option>Yes</option><option>No</option></select></label>
+    <label>Label ready?<select name="label_ready"><option>Yes</option><option>No</option></select></label><label>Data source<input name="data_source" placeholder="ERP / PLM / supplier portal"></label>
+    <label>Market<input name="market" value="EU"></label><label>Last verified<input type="date" name="last_verified"></label>
+    <label class="wide">Notes<textarea rows="4" name="notes" placeholder="Add supporting comments or remediation notes..."></textarea></label>
+    <div class="wide form-actions"><a class="btn secondary" href="{{url_for('packaging')}}">Cancel</a><button class="btn">Save packaging record</button></div>
+  </form></div>
+</div>{% endblock %}

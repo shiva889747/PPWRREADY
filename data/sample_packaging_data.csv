@@ -1,0 +1,13 @@
+sku,product_name,packaging_level,packaging_type,material,weight_g,recycled_content_pct,recyclable,supplier,supplier_evidence,label_ready,data_source,market,last_verified,notes
+SKU-1001,Orange Juice 1L,Primary,Bottle,PET,35,30,Yes,EcoPack GmbH,Yes,Yes,ERP + Supplier Declaration,EU,2026-08-20,Good evidence coverage.
+SKU-1002,Sparkling Water 500ml,Primary,Bottle,PET,22,25,Yes,ClearBottle Ltd,Yes,No,ERP,EU,2026-07-18,Label mapping still pending.
+SKU-1003,Breakfast Cereal 500g,Primary,Carton,Paperboard,48,0,Yes,FiberPack BV,No,Yes,Spreadsheet,EU,2026-06-30,Supplier recyclability certificate missing.
+SKU-1004,Tomato Sauce 350g,Primary,Jar,Glass,210,0,Yes,GlassWorks SA,Yes,Yes,PLM,EU,2026-08-05,Complete baseline record.
+SKU-1005,Shampoo 250ml,Primary,Bottle,HDPE,28,18,Yes,PolyForm SpA,No,No,Email + Spreadsheet,EU,2026-05-11,Supplier evidence and labelling need action.
+SKU-1006,Coffee Beans 1kg,Primary,Pouch,Multi-layer Plastic,32,,Unknown,FlexiPack SRL,No,No,Spreadsheet,EU,,Composition and recyclability evidence incomplete.
+SKU-1007,Chocolate Gift Box,Secondary,Box,Paperboard,85,60,Yes,FiberPack BV,Yes,Yes,PLM,EU,2026-08-25,High readiness.
+SKU-1008,Laundry Capsules 30ct,Primary,Tub,PP,64,20,Yes,PackTech NV,Yes,No,ERP + Supplier Portal,EU,2026-08-01,Harmonised label readiness pending.
+SKU-1009,Frozen Vegetables 750g,Primary,Film,LDPE,14,,Unknown,FlexiPack SRL,No,No,Spreadsheet,EU,2026-03-15,Major data gap.
+SKU-1010,Olive Oil 750ml,Primary,Bottle,Glass,390,0,Yes,GlassWorks SA,Yes,Yes,PLM + Supplier Declaration,EU,2026-08-28,Complete baseline record.
+SKU-1011,Protein Bar 60g,Primary,Wrapper,Plastic laminate,4,,No,WrapCo,No,No,Email,EU,,Material detail and evidence require remediation.
+SKU-1012,Hand Soap 500ml,Primary,Bottle,PET,31,35,Yes,EcoPack GmbH,Yes,Yes,ERP + Supplier Declaration,EU,2026-09-01,Ready for reporting prototype.

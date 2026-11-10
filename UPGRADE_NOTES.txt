@@ -1,0 +1,18 @@
+PPWRREADY Advanced Upgrade
+==========================
+
+This build extends the previous dashboard with:
+- Add / edit / delete packaging records
+- CSV import validation and preview
+- JSON export and summary API
+- Supplier analytics
+- Remediation action workflow
+- What-if readiness simulator
+- Assessment snapshot history
+- Audit trail
+- Data dictionary
+- Enhanced record view and reporting
+
+Database migrations are automatic: the new governance tables are created when the application starts. Existing packaging data remains compatible.
+
+Recommended demo: Dashboard -> low-readiness record -> Edit -> Gap Analysis -> Simulator -> Actions -> Supplier Analytics -> Snapshot -> Audit -> Report.

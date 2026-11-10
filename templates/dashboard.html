@@ -1,0 +1,55 @@
+{% extends 'base.html' %}{% block content %}
+<section class="hero-grid">
+  <div class="card hero-card">
+    <div>
+      <span class="section-kicker">OVERALL READINESS</span>
+      <h2>Packaging data readiness</h2>
+      <p class="muted">A consolidated view of completeness, evidence and reporting preparedness across the packaging register.</p>
+      <div class="hero-tags"><span>Updated {{refreshed}}</span><span>{{rows|length}} assessed records</span></div>
+    </div>
+    <div class="gauge" style="--score:{{avg*3.6}}deg"><div><strong>{{avg}}%</strong><span>{{'High' if avg>=80 else 'Medium' if avg>=60 else 'Low'}} readiness</span></div></div>
+  </div>
+  <div class="card action-card">
+    <span class="section-kicker">ACTION CENTRE</span>
+    <h2>{{critical_gaps}} data areas need attention</h2><div class="action-count"><b>{{open_actions}}</b><span>open remediation actions</span></div>
+    <p class="muted">Prioritise missing evidence and incomplete attributes before downstream reporting.</p>
+    <a class="btn" href="{{url_for('gaps')}}">Review data gaps →</a>
+  </div>
+</section>
+
+<section class="grid4 kpi-grid">
+  <div class="card metric"><span class="metric-icon">▦</span><div><b>{{rows|length}}</b><span>Total packaging records</span></div></div>
+  <div class="card metric"><span class="metric-icon">✓</span><div><b>{{evidence_ready}}%</b><span>Supplier evidence ready</span></div></div>
+  <div class="card metric"><span class="metric-icon">▤</span><div><b>{{label_ready}}%</b><span>Labelling assessed</span></div></div>
+  <div class="card metric"><span class="metric-icon">◷</span><div><b>{{verified}}%</b><span>Records verified</span></div></div>
+</section>
+
+<section class="twocol dashboard-panels">
+  <div class="card">
+    <div class="card-head"><div><span class="section-kicker">PORTFOLIO STATUS</span><h2>Readiness distribution</h2></div><a class="text-link" href="{{url_for('readiness')}}">View assessment</a></div>
+    <div class="stackbar"><i class="highseg" style="width:{{high/(rows|length)*100 if rows else 0}}%"></i><i class="medseg" style="width:{{medium/(rows|length)*100 if rows else 0}}%"></i><i class="lowseg" style="width:{{low/(rows|length)*100 if rows else 0}}%"></i></div>
+    <div class="legend"><span><i class="dot high"></i>High <b>{{high}}</b></span><span><i class="dot medium"></i>Medium <b>{{medium}}</b></span><span><i class="dot low"></i>Low <b>{{low}}</b></span></div>
+    <div class="divider"></div>
+    <div class="insight"><span>◎</span><p><b>{{high}} of {{rows|length}} records</b> meet the project's high-readiness threshold.</p></div>
+  </div>
+  <div class="card">
+    <div class="card-head"><div><span class="section-kicker">REMEDIATION</span><h2>Top data gaps</h2></div><a class="text-link" href="{{url_for('gaps')}}">Full analysis</a></div>
+    {% for name,count in gaps|dictsort(false,'value')|reverse %}{% if count>0 %}
+    <div class="gap-row"><div><span>{{name}}</span><div class="mini-bar"><i style="width:{{count/(rows|length)*100 if rows else 0}}%"></i></div></div><strong>{{count}}</strong></div>
+    {% endif %}{% endfor %}
+  </div>
+</section>
+
+<section class="twocol dashboard-panels">
+  <div class="card">
+    <div class="card-head"><div><span class="section-kicker">MATERIAL LANDSCAPE</span><h2>Packaging material profile</h2></div></div>
+    {% for m,c in materials|dictsort(false,'value')|reverse %}
+    <div class="material-row"><span>{{m}}</span><div class="material-track"><i style="width:{{c/material_max*100}}%"></i></div><b>{{c}}</b></div>
+    {% endfor %}
+  </div>
+  <div class="card">
+    <div class="card-head"><div><span class="section-kicker">RECENT DATA</span><h2>Latest records</h2></div><a class="text-link" href="{{url_for('packaging')}}">Open register</a></div>
+    <div class="recent-list">{% for r in recent %}<a href="{{url_for('record',record_id=r.id)}}"><span class="record-avatar">{{r.product_name[:1]}}</span><div><b>{{r.product_name}}</b><small>{{r.sku}} · {{r.material or 'Material pending'}}</small></div><span>→</span></a>{% endfor %}</div>
+  </div>
+</section>
+{% endblock %}
